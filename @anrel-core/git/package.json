@@ -1,0 +1,5 @@
+{
+  "name": "@anrel/git",
+  "version": "0.0.0",
+  "main": "libs/index.js"
+}

@@ -1,0 +1,4 @@
+{
+  "packages": ["@anrel-commands/*", "@anrel-core/*"],
+  "version": "0.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@anrel/bootstrap",
+  "version": "0.0.0",
+  "main": "libs/index.js",
+  "dependencies": {
+    "@anrel/git": "0.0.0"
+  }
+}

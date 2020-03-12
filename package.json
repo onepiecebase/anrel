@@ -1,0 +1,57 @@
+{
+  "name": "anrel",
+  "version": "0.0.0",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "DavidJones",
+      "email": "qowera@gmail.com",
+      "url": "https://github.com/DavidKk"
+    }
+  ],
+  "scripts": {
+    "commit": "git-cz",
+    "install": "lerna bootstrap",
+    "ci:deploy": "lerna publish from-package --yes",
+    "format": "prettier --config ./prettierrc.js --write \"**/*.{js,jsx,ts,tsx,d.ts,md,json,yml,yaml}\"",
+    "lint:ts": "lerna exec \"eslint --ext .ts ./src --fix\"",
+    "lint": "npm run lint:ts",
+    "develop": "lerna exec \"tsc --project ./src --outDir ./libs --declaration --watch\" --parallel",
+    "product": "lerna exec \"tsc --project ./src --outDir ./libs --declaration\" --stream",
+    "start": "npm run develop"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/node": "^13.7.1",
+    "@types/portscanner": "^2.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.0.10",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "typescript": "^3.8.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.{md,json,yml}": [
+      "npm run format",
+      "git add"
+    ],
+    "**/*.{ts,tsx,d.ts}": [
+      "npm run lint:ts",
+      "git add"
+    ]
+  }
+}
