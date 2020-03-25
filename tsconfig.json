@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -8,7 +9,10 @@
     "esModuleInterop": true,
     "removeComments": true,
     "skipLibCheck": true,
-    "sourceMap": false
+    "sourceMap": false,
+    "paths": {
+      "@anrel/*": ["../node_modules/@anrel/*/src"]
+    }
   },
   "typeRoots": ["node_modules/@types"],
   "include": ["**/*.ts", "**/*.d.ts"],
