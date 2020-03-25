@@ -56,11 +56,11 @@ module.exports = {
   '**/*.{md,json,yml}': async filenames => {
     const format = run('lint-stage:format')
     const command = await format(filenames)
-    return [command, `git add ${filenames.join(' ')}`].join(' && ')
+    return [command, `git add ${filenames.join(' ')}`]
   },
   '**/*.{ts,tsx,d.ts}': async filenames => {
     const lint = run('lint-stage:lint:ts')
     const command = await lint(filenames)
-    return [command, `git add ${filenames.join(' ')}`].join(' && ')
+    return [command, `git add ${filenames.join(' ')}`]
   },
 }
