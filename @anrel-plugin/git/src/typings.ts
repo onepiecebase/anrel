@@ -1,3 +1,3 @@
 export interface Demo {
-  [key: string]: any;
+  [key: string]: any
 }
