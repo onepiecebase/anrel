@@ -55,6 +55,7 @@ class Project {
    * 获取仓库URI
    */
   public get repoURI() {
+    // TODO: get uri from .git
     return this.config.repoURI
   }
 
