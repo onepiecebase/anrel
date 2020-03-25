@@ -1,34 +1,36 @@
 {
-  "name": "@anrel-core/project",
-  "version": "0.0.0",
+  "name": "@anrel/project",
+  "version": "0.0.1-alpha.1",
+  "license": "MIT",
   "description": "> TODO: description",
   "author": "eonlee <eonlee96@gmail.com>",
   "homepage": "https://github.com/onepiecebase/anrel#readme",
-  "license": "ISC",
   "main": "lib/index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/onepiecebase/anrel.git"
-  },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
-  "bugs": {
-    "url": "https://github.com/onepiecebase/anrel/issues"
+    "prepublishOnly": "npm run product",
+    "lint:ts": "eslint --ext .ts ./src --fix",
+    "lint": "npm run lint:ts",
+    "unitest": "ts-mocha --paths -p ./test/tsconfig.json test/**/*.spec.ts",
+    "unitest:watch": "npm run unitest -- --watch --watch-files \"src/**/*.ts,test/**/*.spec.ts\" -R min",
+    "test": "npm run unitest",
+    "develop": "rimraf ./libs && tsc -p ./src --outDir ./libs --declaration --watch",
+    "product": "rimraf ./libs && tsc -p ./src --outDir ./libs --declaration",
+    "start": "npm run develop"
   },
   "dependencies": {
-    "@types/npmlog": "^4.1.2",
     "cosmiconfig": "^6.0.0",
     "npmlog": "^4.1.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "eslint": "^6.8.0",
+    "@types/npmlog": "^4.1.2",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1",
+    "ts-mocha": "^7.0.0",
+    "ts-node": "^8.8.1"
   }
 }

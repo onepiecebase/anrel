@@ -1,6 +1,6 @@
 {
   "name": "anrel",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.1",
   "license": "MIT",
   "contributors": [
     {
@@ -13,18 +13,23 @@
     "commit": "git-cz",
     "install": "lerna bootstrap",
     "ci:deploy": "lerna publish from-package --yes",
+    "lerna:version": "lerna version --no-git-tag-version --no-push",
     "format": "prettier --config ./prettierrc.js --write \"**/*.{js,jsx,ts,tsx,d.ts,md,json,yml,yaml}\"",
     "lint:ts": "lerna exec \"eslint --ext .ts ./src --fix\"",
     "lint": "npm run lint:ts",
+    "unitest": "lerna run unitest --stream",
+    "test": "npm run unitest",
+    "release": "lerna publish",
+    "product": "lerna run product --stream",
     "develop": "lerna exec \"tsc --project ./src --outDir ./libs --declaration --watch\" --parallel",
-    "product": "lerna exec \"tsc --project ./src --outDir ./libs --declaration\" --stream",
     "start": "npm run develop"
   },
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@types/mocha": "^7.0.2",
     "@types/node": "^13.7.1",
-    "@types/portscanner": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^2.16.0",
     "@typescript-eslint/parser": "^2.16.0",
     "commitizen": "^4.0.3",

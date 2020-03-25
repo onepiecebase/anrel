@@ -1,3 +1,2 @@
-export default function test() {
-  return true
-}
+export { default } from './Git'
+export * from './typings'

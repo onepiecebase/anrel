@@ -1,8 +1,8 @@
 {
-  "name": "@anrel/bootstrap",
+  "name": "@anrel/cli",
   "version": "0.0.1-alpha.1",
   "license": "MIT",
-  "main": "libs/index.js",
+  "bin": "./bin/cli",
   "scripts": {
     "prepublishOnly": "npm run product",
     "lint:ts": "eslint --ext .ts ./src --fix",
@@ -15,15 +15,14 @@
     "start": "npm run develop"
   },
   "dependencies": {
-    "@anrel/project": "^0.0.1-alpha.1",
-    "@anrel/git": "^0.0.1-alpha.1"
+    "@anrel/bootstrap": "^0.0.1-alpha.1",
+    "@anrel/version": "^0.0.1-alpha.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.16.0",
     "@typescript-eslint/parser": "^2.16.0",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
+    "@types/npmlog": "^4.1.2",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
     "chai": "^4.2.0",
