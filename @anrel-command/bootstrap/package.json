@@ -1,5 +1,5 @@
 {
-  "name": "@anrel/git",
+  "name": "@anrel/bootstrap",
   "version": "0.0.1-alpha.1",
   "license": "MIT",
   "main": "libs/index.js",
@@ -15,10 +15,15 @@
     "product": "rimraf ./libs && tsc -p ./src --outDir ./libs --declaration",
     "start": "npm run develop"
   },
+  "dependencies": {
+    "@anrel/command": "^0.0.1-alpha.1"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.16.0",
     "@typescript-eslint/parser": "^2.16.0",
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
     "chai": "^4.2.0",

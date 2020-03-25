@@ -1,5 +1,5 @@
 {
   "version": "0.0.1-alpha.1",
   "npmClient": "yarn",
-  "packages": ["@anrel-scripts/*", "@anrel-commands/*", "@anrel-core/*"]
+  "packages": ["@anrel-core/*", "@anrel-command/*", "@anrel-script/*", "@anrel-plugin"]
 }

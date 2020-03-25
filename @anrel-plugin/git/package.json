@@ -1,5 +1,5 @@
 {
-  "name": "@anrel/git",
+  "name": "@anrel/git-launch",
   "version": "0.0.1-alpha.1",
   "license": "MIT",
   "main": "libs/index.js",

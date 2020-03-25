@@ -1,2 +1,13 @@
-☐ anrel bootstrap
-☐ anrel version
+☐ 配置
+  ☐ 添加 发布配置
+    ☐ 添加 npm publish script hook
+    ☐ 添加 发布类型 (Git)
+    ☐ 添加 发布提交地址
+    ☐ 添加 发布 message
+    ☐ 添加 过滤文件
+
+☐ 功能
+  ☐ 解决 lifecircle 问题
+  ☐ 发布
+    ☐ 触发 npm 发布钩子
+    ☐ 根据 .gitignore 与 .npmignore 过滤文件包括 node_modules

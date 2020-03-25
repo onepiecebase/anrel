@@ -4,6 +4,11 @@
   "license": "MIT",
   "contributors": [
     {
+      "name": "eonlee",
+      "email": "eonlee96@gmail.com",
+      "url": "https://github.com/eonlee"
+    },
+    {
       "name": "DavidJones",
       "email": "qowera@gmail.com",
       "url": "https://github.com/DavidKk"
@@ -21,7 +26,7 @@
     "test": "npm run unitest",
     "release": "lerna publish",
     "product": "lerna run product --stream",
-    "develop": "lerna exec \"tsc --project ./src --outDir ./libs --declaration --watch\" --parallel",
+    "develop": "echo \"暂时没有\"",
     "start": "npm run develop"
   },
   "dependencies": {},

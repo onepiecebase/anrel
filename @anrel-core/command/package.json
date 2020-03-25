@@ -1,5 +1,5 @@
 {
-  "name": "@anrel/git",
+  "name": "@anrel/command",
   "version": "0.0.1-alpha.1",
   "license": "MIT",
   "main": "libs/index.js",
@@ -14,6 +14,12 @@
     "develop": "rimraf ./libs && tsc -p ./src --outDir ./libs --declaration --watch",
     "product": "rimraf ./libs && tsc -p ./src --outDir ./libs --declaration",
     "start": "npm run develop"
+  },
+  "dependencies": {
+    "@anrel/project": "^0.0.1-alpha.1",
+    "@anrel/logger": "^0.0.1-alpha.1",
+    "@anrel/pm": "^0.0.1-alpha.1",
+    "@anrel/git": "^0.0.1-alpha.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.16.0",
