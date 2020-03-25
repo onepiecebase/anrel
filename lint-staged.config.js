@@ -42,7 +42,6 @@ function runPrefix(callback) {
       return callback(prefix, packages)
     })
 
-    commands.push(`git add ${filenames.join(' ')}`)
     return commands.join(' && ')
   }
 }
@@ -56,10 +55,12 @@ function run(command) {
 module.exports = {
   '**/*.{md,json,yml}': async filenames => {
     const format = run('lint-stage:format')
-    return await format(filenames)
+    const command = await format(filenames)
+    return [command, 'git add'].join(' && ')
   },
   '**/*.{ts,tsx,d.ts}': async filenames => {
-    const lint = run('lint-stage:format')
-    return await lint(filenames)
+    const lint = run('lint-stage:lint:ts')
+    const command = await lint(filenames)
+    return [command, 'git add'].join(' && ')
   },
 }
