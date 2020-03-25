@@ -56,12 +56,10 @@
   },
   "lint-staged": {
     "**/*.{md,json,yml}": [
-      "npm run format",
-      "git add"
+      "npm run format"
     ],
     "**/*.{ts,tsx,d.ts}": [
-      "npm run lint:ts",
-      "git add"
+      "npm run lint:ts"
     ]
   }
 }
