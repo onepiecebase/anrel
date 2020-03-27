@@ -84,7 +84,7 @@ const runDischarge = (command) => {
       return ''
     }
 
-    return `npm run ${command} ${discharge.join(' ')}`
+    return `npm run ${command} --prefix ./ ${discharge.join(' ')}`
   }
 }
 

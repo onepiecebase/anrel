@@ -1,5 +1,5 @@
 import flattenDeep from 'lodash/flattenDeep';
-import { program } from 'commander';
+import { program } from 'commander'
 import inquirer from 'inquirer';
 import { select, spawn } from '../share/pm'
 import { rootPath } from '../constants/conf';
