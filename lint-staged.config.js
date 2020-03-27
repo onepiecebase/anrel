@@ -3,8 +3,13 @@ const path = require('path')
 const glob = require('glob')
 const flattenDeep = require('lodash/flattenDeep')
 const fromPairs = require('lodash/fromPairs')
+const trim = require('lodash/trim')
 
 const scopeCache = {}
+
+const filterFilenames = (filenames) => {
+  return trim(filenames)
+}
 
 const findScopePaths = async () => {
   const rootPath = process.cwd()
@@ -61,16 +66,24 @@ const runEachScope = (command) => {
     const commands = Object.keys(scopes).map(name => {
       const packages = scopes[name]
       const prefix = scopePaths[name]
+      if (!(Array.isArray(packages) && packages.length > 0)) {
+        return ''
+      }
+      
       return `npm run ${command} ${prefix ? `--prefix ${prefix}` : ''} ${packages.join(' ')}`
     })
 
-    return commands.join(' && ')
+    return commands.filter(Boolean).join(' && ')
   }
 }
 
 const runDischarge = (command) => {
   return async filenames => {
     const { discharge } = await matchScopes(filenames)
+    if (!(Array.isArray(discharge) && discharge.length > 0)) {
+      return ''
+    }
+
     return `npm run ${command} ${discharge.join(' ')}`
   }
 }
@@ -83,6 +96,10 @@ const run = (command) => {
   }
 }
 
+const gitAdd = (filenames) => {
+  return `git add ${filenames.join(' ')}`
+}
+
 ~(async filenames => {
   const format = run('lint-stage:format')
   const command = await format(filenames)
@@ -91,16 +108,26 @@ const run = (command) => {
 
 module.exports = {
   '**/*.{md,json,yml}': async filenames => {
+    if (!filterFilenames(filenames)) {
+      return []
+    }
+
     const format = run('lint-stage:format')
     const formatComand = await format(filenames)
-    const commands = [formatComand, `git add ${filenames.join(' ')}`]
+    const gitAddCommand = gitAdd(filenames)
+    const commands = [formatComand, gitAddCommand]
     console.log(commands)
     return commands
   },
   '**/*.{ts,tsx,d.ts}': async filenames => {
+    if (!filterFilenames(filenames)) {
+      return []
+    }
+
     const lint = run('lint-stage:lint:ts')
     const lintCommand = await lint(filenames)
-    const commands = [lintCommand, `git add ${filenames.join(' ')}`]
+    const gitAddCommand = gitAdd(filenames)
+    const commands = [lintCommand, gitAddCommand]
     console.log(commands)
     return commands
   },
