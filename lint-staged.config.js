@@ -84,7 +84,7 @@ const runDischarge = (command) => {
       return ''
     }
 
-    return `npm run ${command} --prefix ./ ${discharge.join(' ')}`
+    return `npm run ${command} ${discharge.join(' ')}`
   }
 }
 
@@ -100,14 +100,8 @@ const gitAdd = (filenames) => {
   return `git add ${filenames.join(' ')}`
 }
 
-~(async filenames => {
-  const format = run('lint-stage:format')
-  const command = await format(filenames)
-  console.log([command, `git add ${filenames.join(' ')}`])
-})(['/Users/zhongjiahao/Develop/utils/anrel/scripts/lerna/command/add.ts'])
-
 module.exports = {
-  '**/*.{md,json,yml}': async filenames => {
+  '**/*.{md,json,yml,ts,tsx,d.ts}': async filenames => {
     if (!filterFilenames(filenames)) {
       return []
     }
@@ -116,7 +110,6 @@ module.exports = {
     const formatComand = await format(filenames)
     const gitAddCommand = gitAdd(filenames)
     const commands = [formatComand, gitAddCommand]
-    console.log(commands)
     return commands
   },
   '**/*.{ts,tsx,d.ts}': async filenames => {
@@ -128,7 +121,6 @@ module.exports = {
     const lintCommand = await lint(filenames)
     const gitAddCommand = gitAdd(filenames)
     const commands = [lintCommand, gitAddCommand]
-    console.log(commands)
     return commands
   },
 }

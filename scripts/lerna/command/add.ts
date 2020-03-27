@@ -1,6 +1,6 @@
-import flattenDeep from 'lodash/flattenDeep';
+import flattenDeep from 'lodash/flattenDeep'
 import { program } from 'commander'
-import inquirer from 'inquirer';
+import inquirer from 'inquirer'
 import { select, spawn } from '../share/pm'
 import { rootPath } from '../constants/conf'
 
@@ -32,6 +32,6 @@ export async function add(dependencies: string[], isDev?: boolean): Promise<void
 }
 
 program
-.command('add [dependencies...]')
-.option('--dev, --save-dev <isDev>')
-.action((dependencies, options) => add(dependencies, options.isDev))
+  .command('add [dependencies...]')
+  .option('--dev, --save-dev <isDev>')
+  .action((dependencies, options) => add(dependencies, options.isDev))
