@@ -84,20 +84,24 @@ const run = (command) => {
 }
 
 ~(async filenames => {
-  const format = await run('lint-stage:format')
-  const command = format(filenames)
-  return [command, `git add ${filenames.join(' ')}`]
+  const format = run('lint-stage:format')
+  const command = await format(filenames)
+  console.log([command, `git add ${filenames.join(' ')}`])
 })(['/Users/zhongjiahao/Develop/utils/anrel/scripts/lerna/command/add.ts'])
 
 module.exports = {
   '**/*.{md,json,yml}': async filenames => {
     const format = run('lint-stage:format')
-    const command = await format(filenames)
-    return [command, `git add ${filenames.join(' ')}`]
+    const formatComand = await format(filenames)
+    const commands = [formatComand, `git add ${filenames.join(' ')}`]
+    console.log(commands)
+    return commands
   },
   '**/*.{ts,tsx,d.ts}': async filenames => {
-    const format = run('lint-stage:lint:ts')
-    const command = await format(filenames)
-    return [command, `git add ${filenames.join(' ')}`]
+    const lint = run('lint-stage:lint:ts')
+    const lintCommand = await lint(filenames)
+    const commands = [lintCommand, `git add ${filenames.join(' ')}`]
+    console.log(commands)
+    return commands
   },
 }
