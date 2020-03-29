@@ -11,11 +11,9 @@
     "skipLibCheck": true,
     "sourceMap": false,
     "declaration": true,
-    "resolveJsonModule": true,
-    "paths": {
-      "@anrel/*": ["@anrel-command/*", "@anrel-core/*", "@anrel-script/*"]
-    }
+    "resolveJsonModule": true
   },
+  "include": ["**/*.ts", "**/*.d.ts"],
   "typeRoots": ["node_modules/@types"],
   "exclude": ["node_modules"]
 }

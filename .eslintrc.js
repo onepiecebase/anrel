@@ -4,11 +4,11 @@ module.exports = {
   parserOptions: {
     project: [
       './tsconfig.json',
-      '@anrel-core/*/src/tsconfig.json',
       '@anrel-command/*/src/tsconfig.json',
+      '@anrel-core/*/src/tsconfig.json',
       '@anrel-script/*/src/tsconfig.json',
-      '@anrel-core/*/test/tsconfig.json',
       '@anrel-command/*/test/tsconfig.json',
+      '@anrel-core/*/test/tsconfig.json',
       '@anrel-script/*/test/tsconfig.json',
     ],
   },

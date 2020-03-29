@@ -3,7 +3,7 @@ import Project from '@/Project'
 
 describe('测试 Project', () => {
   it('能够 初始化', () => {
-    const pro = new Project()
-    expect(pro).to.be.instanceOf(Project)
+    const target = new Project()
+    expect(target).to.be.instanceOf(Project)
   })
 })
