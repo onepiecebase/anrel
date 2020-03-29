@@ -10,9 +10,12 @@
     "removeComments": true,
     "skipLibCheck": true,
     "sourceMap": false,
-    "resolveJsonModule": true
+    "declaration": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@anrel/*": ["@anrel-command/*", "@anrel-core/*", "@anrel-script/*"]
+    }
   },
   "typeRoots": ["node_modules/@types"],
-  "include": ["**/*.ts", "**/*.d.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules"]
 }

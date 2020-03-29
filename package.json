@@ -22,14 +22,13 @@
     "lint-stage:format": "prettier --config ./prettierrc.js --write --",
     "lint-stage:lint:ts": "eslint --ext .ts --fix --",
     "format": "prettier --config ./prettierrc.js --write \"**/*.{js,jsx,ts,tsx,d.ts,md,json,yml,yaml}\"",
-    "lint:ts": "eslint --ext .ts ./scripts --fix && lerna exec \"eslint --ext .ts ./src --fix\"",
+    "lint:ts": "eslint --ext .ts --fix .",
     "lint": "npm run lint:ts",
     "unitest": "lerna run unitest --stream",
     "test": "npm run lint && npm run unitest",
-    "compile": "lerna exec \"tsc --project ./src --outDir ./libs --declaration\" --stream",
-    "compile:watch": "ts-node --project tsconfig.json scripts/lerna/index.ts exec \"tsc --project ./src --outDir ./libs --declaration --watch\" -- --parallel",
     "release": "lerna publish",
-    "develop": "npm run compile && npm run compile:watch",
+    "product": "lerna exec \"rimraf ./libs && tsc --project ./src -outDir ./libs --declaration\" --stream --scope=@anrel/project",
+    "develop": "ts-node scripts/lerna/index.ts exec \"ts-mocha --paths -p ./tsconfig.json test/**/*.spec.ts --watch\"",
     "start": "npm run develop"
   },
   "devDependencies": {
@@ -42,29 +41,40 @@
     "@types/lodash": "^4.14.149",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.7.1",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "commander": "^5.0.0",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
-    "commander": "^5.0.0",
-    "inquirer": "^7.1.0",
-    "ts-node": "^8.8.1",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "fs-extra": "^9.0.0",
     "glob": "^7.1.6",
     "husky": "^4.0.10",
+    "inquirer": "^7.1.0",
     "lerna": "^3.20.2",
     "lint-staged": "^10.0.7",
     "lodash": "^4.17.15",
-    "typescript": "^3.8.3",
-    "@typescript-eslint/eslint-plugin": "^2.16.0",
-    "@typescript-eslint/parser": "^2.16.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
     "prettier": "^1.19.1",
-    "eslint": "^6.8.0"
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "lint-staged": {
+    "**/*.{md,json,yml,ts,tsx,d.ts}": [
+      "npm run lint-stage:format",
+      "git add"
+    ],
+    "**/*.{ts,tsx,d.ts}": [
+      "npm run lint-stage:lint:ts",
+      "git add"
+    ]
   }
 }

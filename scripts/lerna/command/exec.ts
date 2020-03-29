@@ -20,6 +20,4 @@ export async function exec(commands: string[]): Promise<void> {
   await spawn('lerna', params, { cwd: rootPath, stdio: 'inherit' })
 }
 
-program
-.command('exec [commands...]')
-.action((commands) => exec(commands))
+program.command('exec [commands...]').action(commands => exec(commands))

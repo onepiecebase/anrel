@@ -1,7 +1,7 @@
 import program from 'commander'
 import Bootstrap from '@anrel/bootstrap'
 
-const bootstrap = () => {
+export const bootstrap = () => {
   const command = new Bootstrap()
   command.exec()
 }

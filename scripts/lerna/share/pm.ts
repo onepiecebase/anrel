@@ -17,7 +17,7 @@ export async function select(message: string = '请选择模块') {
     })
   })
 
-  const files = await Promise.all(promises).then((...files) => flattenDeep(files)) as string[]
+  const files = (await Promise.all(promises).then((...files) => flattenDeep(files))) as string[]
   const folders = files.filter(file => fs.statSync(file).isDirectory() && fs.existsSync(path.join(file, 'package.json')))
   const packages = folders.map(folder => {
     const file = path.join(folder, 'package.json')
